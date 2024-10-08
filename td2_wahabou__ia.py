@@ -51,3 +51,32 @@ def croisement_1point(parent1, parent2):
 
 print(croisement_1point("010101", "101010"))
 
+def croisement_kpoint(parent1, parent2, k):
+    # Sélectionner k points de croisement aléatoires
+    points = sorted(random.sample(range(1, len(parent1)), k))
+    print(points)
+    
+    # Initialiser les enfants
+    enfants = [parent1[:points[0]], parent2[:points[0]]]
+    
+    # Créer les enfants en croisant les parents aux points de croisement
+    for i in range(1, len(points)):
+        if i % 2 == 0:
+            enfants[0] += parent1[points[i-1]:points[i]]
+            enfants[1] += parent2[points[i-1]:points[i]]
+        else:
+            enfants[0] += parent2[points[i-1]:points[i]]
+            enfants[1] += parent1[points[i-1]:points[i]]
+    
+    # Ajouter la dernière partie des parents
+    if len(points) % 2 == 0:
+        enfants[0] += parent1[points[-1]:]
+        enfants[1] += parent2[points[-1]:]
+    else:
+        enfants[0] += parent2[points[-1]:]
+        enfants[1] += parent1[points[-1]:]
+    
+    return enfants
+
+print(croisement_kpoint("010101", "101010", 2))
+
