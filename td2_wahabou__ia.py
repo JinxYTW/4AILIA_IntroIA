@@ -67,7 +67,7 @@ def croisement_kpoint(parent1, parent2, k):
         else:
             enfants[0] += parent2[points[i-1]:points[i]]
             enfants[1] += parent1[points[i-1]:points[i]]
-    
+        
     # Ajouter la dernière partie des parents
     if len(points) % 2 == 0:
         enfants[0] += parent1[points[-1]:]
