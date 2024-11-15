@@ -1,4 +1,5 @@
 from epreuve import Epreuve
+from datetime import datetime, timedelta
 
 class ListeEpreuves:
     def __init__(self, nom_fichier):
@@ -19,13 +20,32 @@ class ListeEpreuves:
                         self.liste.append(epreuve)
         except IOError as e:
             print(e)
-
-    def eliminer_conflits(self, epreuve):
-        # À compléter...
-        pass
-
+    
     def tri_par_heure_fin(self):
         self.liste.sort(key=lambda ep: ep.fin)
+
+    def tri_par_heure_debut(self):
+        self.liste.sort(key=lambda ep: ep.debut)
+
+    def tri_par_duree(self):
+        def duration(ep):
+            today = datetime.combine(datetime.today(), ep.debut)
+            end = datetime.combine(datetime.today(), ep.fin)
+            if end < today:
+                end += timedelta(days=1)  
+            return (end - today).total_seconds()
+        
+        self.liste.sort(key=duration)
+
+    def eliminer_conflits(self, epreuve):
+        self.liste = [ep for ep in self.liste if ep.fin <= epreuve.debut or ep.debut >= epreuve.fin]
+        self.liste.append(epreuve)
+        self.tri_par_heure_fin()
+
+    def eliminer_conflits7(self, epreuve):
+        self.liste = [ep for ep in self.liste if ep.fin <= epreuve.debut or ep.debut >= epreuve.fin]
+        
+    
 
     def get(self, i):
         return self.liste[i]

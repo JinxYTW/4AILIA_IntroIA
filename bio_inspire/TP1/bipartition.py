@@ -18,7 +18,7 @@ class Bipartition:
         Bipartition.afficher(liste)
 
         # Remplacez `utiliserMotieSommeCommeRepere` avec `completerSousEnsembleLePulsPetit` si nécessaire
-        Bipartition.utiliserMotieSommeCommeRepere(liste)
+        Bipartition.completerSousEnsembleLePulsPetit(liste)
 
         print("Sous-liste 1 : ", end="")
         Bipartition.afficher(Bipartition.sListe1)
