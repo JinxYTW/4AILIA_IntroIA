@@ -24,7 +24,7 @@ public class Roulette_wheel_selection extends Selection {
         double somme2 = 0.0;
         double sommef2 = 0.0;
         for (Solution solution : population) {
-            sommef2 += solution.getFitness();
+            sommef2 += solution.getF();
             if (sommef2 >= random) {
                 return solution;
             }

@@ -6,7 +6,9 @@ import operateurs.selection.Selection_aleatoire;
 import operateurs.croisement.Croisement;
 import operateurs.croisement.Croisement_1point;
 import operateurs.croisement.Croisement_2point;
+import operateurs.croisement.Croisement_kpoint;
 import operateurs.selection.Roulette_wheel_selection;
+import operateurs.selection.Selection_tournoi_taille_k;
 import operateurs.selection.Selection;
 import problemes.Probleme;
 import representation.Gene;
@@ -58,7 +60,8 @@ public class Algorithme_genetique {
 		for (int generation = 1; generation < nb_generations; generation++) {
 
 	
-			selection = new Roulette_wheel_selection(population); 
+			//selection = new Roulette_wheel_selection(population); 
+			selection = new Selection_tournoi_taille_k(population, 3);
 
 
 			populationFille = new ArrayList<Solution>();
@@ -69,7 +72,8 @@ public class Algorithme_genetique {
 				Solution parent2 = selection.selectionner();
 
 				Croisement croisement; 
-				croisement = new Croisement_2point(parent1, parent2, probaCroisement);
+				//croisement = new Croisement_2point(parent1, parent2, probaCroisement);
+				croisement = new Croisement_kpoint(parent1, parent2, probaCroisement,4);
 				croisement.croiser();
 
 				Solution enfant1 = croisement.getEnfant1();
