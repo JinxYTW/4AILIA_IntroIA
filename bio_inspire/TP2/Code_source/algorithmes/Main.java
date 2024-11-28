@@ -8,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int taille_population = 100; 
+		int taille_population = 50; 
 		int nb_generations = 2000; 
 		
 		double probaCroisement = .8; 

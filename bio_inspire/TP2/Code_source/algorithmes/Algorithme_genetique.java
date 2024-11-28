@@ -3,6 +3,8 @@ package algorithmes;
 import java.util.ArrayList;
 
 import operateurs.selection.Selection_aleatoire;
+import operateurs.mutation.Mutation;
+import operateurs.mutation.BitFlip;
 import operateurs.croisement.Croisement;
 import operateurs.croisement.Croisement_1point;
 import operateurs.croisement.Croisement_2point;
@@ -55,7 +57,7 @@ public class Algorithme_genetique {
 
 		Selection selection; 
 
-		//Mutation mutation = new BitFlip(probaMutation);
+		Mutation mutation = new BitFlip(probaMutation);
 		
 		for (int generation = 1; generation < nb_generations; generation++) {
 
@@ -80,8 +82,8 @@ public class Algorithme_genetique {
 				Solution enfant2 = croisement.getEnfant2();
 
 				// Mutation
-				//enfant1 = mutation.muter(enfant1);
-				//enfant2 = mutation.muter(enfant2);
+				enfant1 = mutation.muter(enfant1);
+				enfant2 = mutation.muter(enfant2);
 				//
 
 				probleme.evaluer(enfant1);
